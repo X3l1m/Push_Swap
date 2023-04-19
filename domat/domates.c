@@ -1,26 +1,48 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "../libft/libft.h"
 
-typedef struct domates
+typedef struct	domates
 {
-	int patates;
-	struct domates *next;
-}stack;
+void 			patates;
+struct domates	*next;
+}				stack;
 
-stack	*create(void)
+stack	*create(int h)
 { 
     stack	*i;
-	int	h = 5;
-	while(h--){
+	stack	*head;
     i = (stack*)malloc(sizeof(stack));
-	i->patates = h;
-	i->next = NULL;}
+	i->patates = (int)h;
+	i->next = head;
+	head = i;
 	return i;
+}
+
+void bul(stack *ag)
+{
+	printf("%d", ag->next->patates);
+	ag = ag->next;
+	printf("%d", ag->next->patates);
 }
 
 int main()
 {
-	stack *ag = create();
-    printf("%d", ag->next->patates);
+	stack *ag;
+	stack *dom;
+	int h = 5;
+	while (h--)
+	{
+		ag = create(h);
+	}
+	dom = ag;
+	bul(ag);
+	printf("%d", ag->patates);
+	ag = ag->next;
+	printf("%d", ag->patates);
+	printf("%d", dom->patates);
+	bul(ag);
+	ag = dom;
+	printf("%d", ag->patates);
+
+
     return 0;
 }
