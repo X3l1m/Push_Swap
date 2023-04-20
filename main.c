@@ -1,6 +1,9 @@
+#include "push_swap.h"
+
 int	main(int argc, char **argv)
 {
-	int	*a;
-	int *b;
+	stack	*a;
+	stack	*b;
+	
 }
 

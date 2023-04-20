@@ -1,3 +1,5 @@
+#include "push_swap.h"
+
 int	find_first(int *num)
 {
 	int	i;
@@ -8,7 +10,7 @@ int	find_first(int *num)
 }
 
 
-int	swap_top_two(int *num)
+int	swap_top(int *num)
 {
 	int	swp;
 
