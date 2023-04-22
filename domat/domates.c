@@ -2,7 +2,7 @@
 
 typedef struct	domates
 {
-void 			patates;
+int 			patates;
 struct domates	*next;
 }				stack;
 
@@ -11,7 +11,7 @@ stack	*create(int h)
     stack	*i;
 	stack	*head;
     i = (stack*)malloc(sizeof(stack));
-	i->patates = (int)h;
+	i->patates = h;
 	i->next = head;
 	head = i;
 	return i;

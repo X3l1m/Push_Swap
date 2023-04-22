@@ -3,7 +3,9 @@
 int	main(int argc, char **argv)
 {
 	stack	*a;
-	stack	*b;
+	//stack	*b;
 	
+	a = create_list(++argv);
+	printf("%d", a->num);
 }
 
