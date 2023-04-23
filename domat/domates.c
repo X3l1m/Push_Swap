@@ -1,92 +1,117 @@
-#include "../libft/libft.h"
-
-/* typedef struct	domates
-{
-int 			patates;
-struct domates	*next;
-}				stack;
-
-stack	*create(int h)
-{ 
-    stack	*i = NULL;
-	stack	*head;
-	if (i)
-		head = i;
-    i = (stack*)malloc(sizeof(stack));
-	i->patates = h;
-	i->next = head;
-	return i;
-}
-
-void bul(stack *ag)
-{
-	printf("%d", ag->next->patates);
-	ag = ag->next;
-	printf("%d", ag->next->patates);
-}
-
-int main()
-{
-	stack *ag;
-	stack *dom;
-	int h = 5;
-	while (h--)
-	{
-		ag = create(h);
-	}
-	//dom = ag;
-	//bul(ag);
-	printf("%d", ag->next->patates);
-
-
-    return 0;
-}
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct stack
-{
-	int 			num;
-	struct stack	*next;
-} stack;
+typedef struct Node {
+    int data;
+    struct Node* next;
+} Node;
 
-stack	*newnode(int num, stack *link)
-{
-	stack	*new = malloc(sizeof(stack));
-	new->num = num;
-	new->next = link;
-	return new;
+void push(Node** head, int data) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = data;
+    newNode->next = *head;
+    *head = newNode;
 }
 
-void	push_last(stack **list, int num)
-{
-	if (!*list)
-		*list = newnode(num, NULL);
-	else
-	{
-		stack *new = newnode(num, NULL);
-        stack *temp = *list;
-        while (temp->next)
-            temp = temp->next;
-        temp->next = new;
-	}
+int pop(Node** head) {
+    int data = (*head)->data;
+    Node* temp = *head;
+    *head = (*head)->next;
+    free(temp);
+    return data;
 }
 
-void	push_first(stack **list, int num)
-{
-	if (!*list)
-		*list = newnode(num, NULL);
-	else
-		*list = newnode(num, *list);
+void swap(Node** head) {
+    int first = pop(head);
+    int second = pop(head);
+    push(head, first);
+    push(head, second);
+}
+
+void rotate(Node** head) {
+    int data = pop(head);
+    Node* temp = *head;
+    while (temp->next != NULL) {
+        temp = temp->next;
+    }
+    temp->next = (Node*)malloc(sizeof(Node));
+    temp->next->data = data;
+    temp->next->next = NULL;
+}
+
+void reverseRotate(Node** head) {
+    Node* temp = *head;
+    *head = (*head)->next;
+    temp->next = NULL;
+    Node* ptr = *head;
+    while (ptr->next != NULL) {
+        ptr = ptr->next;
+    }
+    ptr->next = temp;
+}
+
+void pushToOtherStack(Node** stackA, Node** stackB) {
+    int data = pop(stackA);
+    push(stackB, data);
+}
+
+void printList(Node* head) {
+    while (head != NULL) {
+        printf("%d ", head->data);
+        head = head->next;
+    }
+    printf("\n");
 }
 
 int main() {
-	stack	*a = NULL;
-	for(int i = 0; i < 5; i++)
-	push_last(&a, i);
-	push_first(&a, 10);
-	printf("%d\n", a->next->next->num);
-	//system("leaks a.out");
+    Node* stackA = NULL;
+    Node* stackB = NULL;
+
+    // 5 sayıyı yığın A'ya yerleştirin
+    push(&stackA, 2);
+    push(&stackA, 5);
+    push(&stackA, 4);
+    push(&stackA, 1);
+    push(&stackA, 3);
+
+    // Yığın A'yı sıralayın
+    int count = 0;
+    for (int i = 0; i < 5; i++) {
+        for (Node* temp = stackA; temp->next != NULL; temp = temp->next) {
+            if (temp->data > temp->next->data) {
+                swap(&stackA);
+                printf("sa ");
+            }
+        }
+        pushToOtherStack(&stackA, &stackB);
+        printf("pb ");
+        count++;
+    }
+
+    // Yığın B'deki sayıları sıralayarak yığın A'ya geri aktarın
+    for (int i = 0; i < count; i++) {
+        for (Node* temp = stackB; temp->next != NULL; temp = temp->next) {
+            if (temp->data < temp->next->data) {
+                reverseRotate(&stackB);
+                printf("rrb ");
+            }
+        }
+        pushToOtherStack(&stackB, &stackA);
+        printf("pa ");
+   
+    }
+
+    // Son sıralama adımı
+    for (Node* temp = stackA; temp->next != NULL; temp = temp->next) {
+        if (temp->data > temp->next->data) {
+            swap(&stackA);
+            printf("sa ");
+        }
+    }
+
+    // Sıralanmış yığın A'yı yazdırın
+    printf("Sorted List: ");
+    printList(stackA);
+
+    return 0;
 }

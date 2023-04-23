@@ -3,16 +3,43 @@
 
 void	little_short(stack **a, stack **b)
 {
-	while (((*a)->next))
+	stack *temp;
+
+	temp = *a;
+	int i = 0;
+	int count = 0;
+	while (i < 5)
 	{
-		if ((*a)->num > (*a)->next->num)
-			sa(a);
+		while (temp->next)
+		{
+			if(temp->num > temp->next->num)
+				sa(a);
+			temp = temp->next;
+		}
 		pb(a, b);
+		i++;
+		count++;
 	}
-	while (((*b)->next))
+	i = 0;
+	temp = *b;
+	while (i < count)
 	{
-		if ((*b)->num > (*b)->next->num)
-			sa(b);
+		while (temp->next)
+		{
+			if(temp->num < temp->next->num)
+				rrb(b);
+			temp = temp->next;
+		}
 		pa(a, b);
+		i++;
 	}
+	
+	temp = *a;
+	while (temp->next)
+	{
+		if (temp->num > temp->next->num)
+			sa(a);
+		temp = temp->next;
+	}
+	
 }
