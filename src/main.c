@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	main(int argc, char **argv)
 {
@@ -6,6 +6,8 @@ int	main(int argc, char **argv)
 	stack	*b;
 	int		i;
 
+	a = NULL;
+	b = NULL;
 	if (argc < 3)
 		return (0);
 	i = 1;
@@ -15,7 +17,7 @@ int	main(int argc, char **argv)
 			return (write(1, "non digit\n", 10) > 0) ? 1 : 0;
 		add_last(&a, ft_atoi(argv[i++]));
 	}
-	little_short(&a, &b);
+	little_short(&a);
 	while (a || b)
 	{
 		if (a){

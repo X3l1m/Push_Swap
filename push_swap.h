@@ -19,9 +19,10 @@ stack	*before_last(stack *list);
 stack	*last(stack *list);
 void	push_other(stack **this, stack **other);
 void	free_stack(stack **list);
+int		find_highest(stack *list);
+void	little_short(stack **list);
 
 //try:
-void	little_short(stack **a, stack **b);
 
 
 //Actions:
