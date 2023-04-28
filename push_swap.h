@@ -31,11 +31,11 @@ stack	*next_min(stack *list, int last_max);
 
 
 //try
-int stack_size(stack *list);
-int get_pos(stack *list, int num);
+int		stack_size(stack *list);
+int		get_pos(stack *list, int num);
 void	sort_all(stack **a, stack **b, int size);
-void sort_five(stack **a, stack **b, int size);
-
+void 	sort_five(stack **a, stack **b, int size);
+void	sort_b(stack **a, stack **b, int size);
 
 //Actions:
 //Swap top two number in Stack A.

@@ -37,6 +37,7 @@ int	main(int argc, char **argv)
 /* 	if (!is_sorted(a))
 		push_swap(&a, &b); */
  	sort_all(&a, &b, stack_size(a));
+	//sort_all(&a, &b, stack_size(a));
 /* 	while (a || b)
 	{
 		if (a){
