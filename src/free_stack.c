@@ -4,6 +4,8 @@ void	free_stack(stack **list)
 {
 	stack	*temp;
 
+	if (!list || !(*list))
+		return;
 	while (*list)
 	{
 		temp = (*list)->next;

@@ -118,10 +118,10 @@ void	sort_b(stack **a, stack **b, int size)
 		i = get_pos(*b, max);
 		if (i <= size-- / 2)
 			while ((*b)->num != max)
-				ra(b);
+				rb(b);
 		else
 			while ((*b)->num != max)
-				rra(b);
+				rrb(b);
 		pa(a, b);
 	}
 	pa(a, b);

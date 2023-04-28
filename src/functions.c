@@ -65,3 +65,24 @@ void	push_other(stack **this, stack **other)
 	free(*this);
 	*this = new_first;
 }
+
+int	check_same(stack *a)
+{
+	stack	*temp;
+	int		second;
+
+	while (a->next)
+	{
+		temp = a;
+		second = 0;
+		while (temp)
+		{
+			if (a->num == temp->num)
+				if (++second > 1)
+					error_msg(1);
+			temp = temp->next;
+		}
+		a = a->next;
+	}
+	return (0);
+}

@@ -28,6 +28,9 @@ void	sort_three(stack **list);
 void	push_swap(stack **a, stack **b);
 void	fill_index(stack *a, int size);
 stack	*next_min(stack *list, int last_max);
+int		check_same(stack *a);
+void	error_msg(int i);
+
 
 
 //try

@@ -20,7 +20,7 @@ clean:
 	make -C libft clean
 
 fclean:
-	make -C libft fclean && $(RM)$(NAME)
+	make -C libft fclean && $(RM) $(NAME)
 
 re: fclean all
 
