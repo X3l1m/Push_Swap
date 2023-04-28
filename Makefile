@@ -20,6 +20,8 @@ clean:
 	make -C libft clean
 
 fclean:
-	make -C libft fclean && $(RM) push_swap
+	make -C libft fclean && $(RM)$(NAME)
 
 re: fclean all
+
+.PHONY:	$(NAME)

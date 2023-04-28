@@ -2,10 +2,12 @@
 # define  PUSH_SWAP_H
 
 #include "libft/libft.h"
+# include <limits.h>
 
 typedef struct	s_list
 {
 int				num;
+int				index;
 struct s_list	*next;
 }				stack;
 
@@ -19,10 +21,20 @@ stack	*before_last(stack *list);
 stack	*last(stack *list);
 void	push_other(stack **this, stack **other);
 void	free_stack(stack **list);
-int		find_highest(stack *list);
-void	little_short(stack **list);
+stack	*get_max(stack *list);
+stack	*get_min(stack *list);
+int		is_sorted(stack *list);
+void	sort_three(stack **list);
+void	push_swap(stack **a, stack **b);
+void	fill_index(stack *a, int size);
+stack	*next_min(stack *list, int last_max);
 
-//try:
+
+//try
+int stack_size(stack *list);
+int get_pos(stack *list, int num);
+void	sort_all(stack **a, stack **b, int size);
+void sort_five(stack **a, stack **b, int size);
 
 
 //Actions:
