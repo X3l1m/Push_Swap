@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 //Swap top two number in Stack A.
 void	sa(stack **a)

@@ -1,7 +1,27 @@
 NAME = push_swap
-HEADER = push_swap.h
+ARCHIVE_LIB = libft/libft.a
 
 SRC_DIR = src/
 
-SRC 	= $(wildcard $(SRC_DIR)/*.c)
-OBJ		= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
+RM = rm -f
+
+SRC 	= $(wildcard $(SRC_DIR)*.c)
+
+all: $(NAME)
+
+
+$(NAME): $(ARCHIVE_LIB)
+	gcc $(SRC) $< -o $@
+
+$(ARCHIVE_LIB):
+	make -C libft
+
+clean:
+	make -C libft clean
+
+fclean:
+	make -C libft fclean && $(RM)$(NAME)
+
+re: fclean all
+
+.PHONY:	$(NAME)
