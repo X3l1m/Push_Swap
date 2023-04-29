@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 13:32:10 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/30 17:39:26 by mcombeau         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   sort.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mcombeau <mcombeau@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/04/26 13:32:10 by mcombeau      #+#    #+#                 */
+/*   Updated: 2023/04/28 23:52:11 by x3l1m         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	sort(t_stack **stack_a, t_stack **stack_b)
 		get_cost(stack_a, stack_b);
 		do_cheapest_move(stack_a, stack_b);
 	}
+	return;
 	if (!is_sorted(*stack_a))
 		shift_stack(stack_a);
 }

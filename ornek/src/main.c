@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 14:04:00 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/30 15:11:18 by mcombeau         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mcombeau <mcombeau@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/04/25 14:04:00 by mcombeau      #+#    #+#                 */
+/*   Updated: 2023/04/28 23:50:51 by x3l1m         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,21 @@ int	main(int ac, char **av)
 	stack_size = get_stack_size(stack_a);
 	assign_index(stack_a, stack_size + 1);
 	push_swap(&stack_a, &stack_b, stack_size);
-	free_stack(&stack_a);
-	free_stack(&stack_b);
+	while (stack_a || stack_b)
+	{
+		if (stack_a){
+			printf("%d", stack_a->value);
+			stack_a = stack_a->next;
+		}
+		else
+			printf("   ");
+		if (stack_b){
+			printf("     %d", stack_b->value);
+			stack_b = stack_b->next;
+		}
+		printf("\n");
+	}
+	//free_stack(&stack_a);
+	//free_stack(&stack_b);
 	return (0);
 }
