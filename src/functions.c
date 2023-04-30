@@ -1,88 +1,69 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   functions.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/04/30 03:51:17 by seyildir      #+#    #+#                 */
+/*   Updated: 2023/04/30 04:17:10 by seyildir      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-void	add_first(stack **list, int num)
+t_stack	*get_min(t_stack *list)
 {
-	if (!*list)
-		*list = newnode(num, NULL);
-	else
-		*list = newnode(num, *list);
-}
+	t_stack	*min;
 
-void	swap_top_two(stack **list)
-{
-	stack	*swp;
-
-	swp = (*list)->next;
-	(*list)->next = swp->next;
-	swp->next = *list;
-	*list = swp;
-}
-
-void	go_top(stack **list)
-{
-	stack	*last_node;
-	stack	*new_last;
-
-	last_node = last(*list);
-	new_last = before_last(*list);
-	last_node->next = *list;
-	new_last->next = NULL;
-	*list = last_node;
-}
-
-void	go_bot(stack **list)
-{
-	stack	*last_node;
-	stack	*second_node;
-
-	second_node = (*list)->next;
-	last_node = last(*list);
-	last_node->next = *list;
-	(*list)->next = NULL;
-	*list = second_node;
-}
-
-stack	*before_last(stack *list)
-{
-	while (list->next && list->next->next)
-		list = list->next;
-	return (list);
-}
-
-stack	*last(stack *list)
-{
+	min = list;
 	while (list->next)
-		list = list->next;
-	return (list);
-}
-
-void	push_other(stack **this, stack **other)
-{
-	stack	*new_first;
-
-	new_first = (*this)->next;
-	add_first(&*other, (*this)->num);
-	free(*this);
-	*this = new_first;
-}
-
-int	check_same(stack *a)
-{
-	stack	*temp;
-	int		second;
-
-	while (a->next)
 	{
-		temp = a;
-		second = 0;
-		while (temp)
-		{
-			if (a->num == temp->num)
-				if (++second > 1)
-					error_msg(1);
-			temp = temp->next;
-		}
-		a = a->next;
+		if (list->next->num < min->num)
+			min = list->next;
+		list = list->next;
 	}
-	return (0);
+	return (min);
+}
+
+t_stack	*get_max(t_stack *list)
+{
+	t_stack	*max;
+
+	max = list;
+	while (list->next)
+	{
+		if (list->next->num > max->num)
+			max = list->next;
+		list = list->next;
+	}
+	return (max);
+}
+
+int	get_pos(t_stack *list, int num)
+{
+	int	pos;
+
+	pos = 0;
+	while (list)
+	{
+		if (list->num == num)
+			return (pos);
+		pos++;
+		list = list->next;
+	}
+	return (-1);
+}
+
+int	stack_size(t_stack *list)
+{
+	int	size;
+
+	size = 0;
+	while (list)
+	{
+		size++;
+		list = list->next;
+	}
+	return (size);
 }

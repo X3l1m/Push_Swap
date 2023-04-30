@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/04/30 03:24:52 by seyildir      #+#    #+#                 */
+/*   Updated: 2023/04/30 05:34:20 by seyildir      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-void push_swap(stack **a, stack **b)
+void	push_swap(t_stack **a, t_stack **b)
 {
 	int	size;
 
@@ -9,23 +21,24 @@ void push_swap(stack **a, stack **b)
 		sa(a);
 	else if (size == 3)
 		sort_three(a);
-	else if (size <= 5)
+	else if (size <= 9)
 		sort_five(a, b, size);
-	else if (size > 5)
-	{
-		fill_index(*a, size);
+	else if (size <= 150)
 		sort_all(a, b, size);
-	}
+	else if (size > 150)
+		radix_sort(a, b, size);
 }
+
 void	error_msg(int i)
 {
-	write(1, "Error\n", 6);
+	write(STDERR_FILENO, "Error\n", 6);
 	exit(i);
 }
+
 int	main(int argc, char **argv)
 {
-	stack	*a;
-	stack	*b;
+	t_stack	*a;
+	t_stack	*b;
 	long	num;
 	int		i;
 
@@ -44,23 +57,8 @@ int	main(int argc, char **argv)
 		add_last(&a, (int)num);
 	}
 	check_same(a);
- 	if (!is_sorted(a))
+	if (!is_sorted(a))
 		push_swap(&a, &b);
-/* 	while (a || b)
-	{
-		if (a){
-			printf("%d", a->num);
-			a = a->next;
-		}
-		else
-			printf("   ");
-		if (b){
-			printf("     %d", b->num);
-			b = b->next;
-		}
-		printf("\n");
-	} */
 	free_stack(&a);
 	free_stack(&b);
-	//system("leaks push_swap");
 }

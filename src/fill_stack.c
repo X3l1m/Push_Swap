@@ -1,22 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   fill_stack.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/04/30 04:02:45 by seyildir      #+#    #+#                 */
+/*   Updated: 2023/04/30 04:13:55 by seyildir      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-stack	*newnode(int num, stack *link)
+t_stack	*newnode(int num, t_stack *link)
 {
-	stack	*new = malloc(sizeof(stack));
+	t_stack	*new;
+
+	new = malloc(sizeof(t_stack));
+	if (!new)
+		error_msg(1);
 	new->num = num;
 	new->next = link;
-	return new;
+	return (new);
 }
 
-void	add_last(stack **list, int num)
+void	add_last(t_stack **list, int num)
 {
+	t_stack	*new;
+	t_stack	*temp;
+
 	if (!*list)
 		*list = newnode(num, NULL);
 	else
 	{
-		stack *new; 
-		stack *temp;
- 
 		temp = *list;
 		new = newnode(num, NULL);
 		while (temp->next)
@@ -25,9 +41,9 @@ void	add_last(stack **list, int num)
 	}
 }
 
-stack	*next_min(stack *list, int last_max)
+t_stack	*next_max(t_stack *list, int last_max)
 {
-	stack	*new_max;
+	t_stack	*new_max;
 
 	new_max = NULL;
 	while (list)
@@ -39,15 +55,14 @@ stack	*next_min(stack *list, int last_max)
 	return (new_max);
 }
 
-void	fill_index(stack *a, int size)
+void	fill_index(t_stack *a, int size)
 {
-	stack	*temp;
+	t_stack	*temp;
 
 	temp = get_max(a);
 	while (size)
 	{
 		temp->index = size--;
-		temp = next_min(a, temp->num);
+		temp = next_max(a, temp->num);
 	}
-	
 }
