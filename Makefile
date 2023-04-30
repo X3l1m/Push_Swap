@@ -16,6 +16,7 @@ NC=\033[0m
 
 NAME	= push_swap
 LIB		= libft/libft.a
+LIBS	 = -L ./libft -lft
 
 SRC_DIR = ./src
 OBJ_DIR = ./obj
@@ -33,7 +34,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo "$(GREEN)Compiling $(RED)$(basename $(notdir $<))$(NC)"
 
 $(NAME): $(OBJ)
-	@$(GCC) $(LIB) $^ -o $@
+	$(GCC) $(LIBS) $^ -o $@
 	@echo "Creating $(NAME)"
 $(LIB):
 	make -C libft
