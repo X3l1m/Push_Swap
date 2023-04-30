@@ -19,18 +19,18 @@ CC = gcc -Wall -Wextra -Werror
 
 RM = rm -rf
 
-all: ${NAME}
+all: $(NAME)
 
-${NAME}: ${OBJS}
-	@${MAKE} -C ./libft
-	@${CC} ${OBJS} ./libft/libft.a -o ${NAME}
+$(NAME): $(OBJS)
+	@$(MAKE) -C ./libft
+	@$(CC) $(OBJS) ./libft/libft.a -o $(NAME)
 
 clean: 
-	@${MAKE} -C ./libft fclean
-	@${RM} ${OBJS}
+	@$(MAKE) -C ./libft fclean
+	@$(RM) $(OBJS)
 
 fclean: clean
-	@${RM} ${NAME}
+	@$(RM) $(NAME)
 
 re: fclean all
 
