@@ -52,10 +52,9 @@ void	sort_three(stack **list)
 		sa(list);
 }
 
-
-int stack_size(stack *list)
+int	stack_size(stack *list)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	while (list)
@@ -66,9 +65,9 @@ int stack_size(stack *list)
 	return (size);
 }
 
-int get_pos(stack *list, int num)
+int	get_pos(stack *list, int num)
 {
-	int pos;
+	int	pos;
 
 	pos = 0;
 	while (list)
@@ -78,10 +77,10 @@ int get_pos(stack *list, int num)
 		pos++;
 		list = list->next;
 	}
-	return -1;
+	return (-1);
 }
 
-void	sort_five(stack **a, stack **b, int size)
+/* void	sort_five(stack **a, stack **b, int size)
 {
 	int min;
 	int i;
@@ -104,8 +103,32 @@ void	sort_five(stack **a, stack **b, int size)
 	sort_three(a);
 	while (pushed--)
 		pa(a, b);
-}
+} */
 
+void	sort_five(stack **a, stack **b, int size)
+{
+	int	min;
+	int	i;
+	int	pushed;
+
+	pushed = 0;
+	while (size > 3)
+	{
+		min = get_min(*a)->num;
+		i = get_pos(*a, min);
+		if (i <= size-- / 2)
+			while ((*a)->num != min)
+				ra(a);
+		else
+			while ((*a)->num != min)
+				rra(a);
+		pb(a, b);
+		pushed++;
+	}
+	sort_three(a);
+	while (pushed--)
+		pa(a, b);
+}
 
 void	sort_b(stack **a, stack **b, int size)
 {
@@ -127,17 +150,20 @@ void	sort_b(stack **a, stack **b, int size)
 	pa(a, b);
 }
 
-
 void	sort_all(stack **a, stack **b, int size)
 {
 	int	half;
-	int b_size;
+	int	b_size;
+	int	i;
 
 	fill_index(*a, size);
 	half = size / 2;
+	i = 0;
+	if (size % 2)
+		i = 1;
 	while (size > half)
 	{
-		if ((*a)->index > half)
+		if ((*a)->index > half + i)
 			ra(a);
 		else
 		{
@@ -149,4 +175,5 @@ void	sort_all(stack **a, stack **b, int size)
 	sort_five(a, b, size);
 	sort_b(a, b, b_size);
 }
+
 

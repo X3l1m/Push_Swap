@@ -1,19 +1,19 @@
-NAME = push_swap
-ARCHIVE_LIB = libft/libft.a
+NAME	= push_swap
+LIB		= libft/libft.a
 
 SRC_DIR = src/
-
-RM = rm -f
+GCC		= gcc -Wall -Werror -Wextra
+RM		= rm -f
 
 SRC 	= $(wildcard $(SRC_DIR)*.c)
 
 all: $(NAME)
 
 
-$(NAME): $(ARCHIVE_LIB)
-	gcc $(SRC) $< -o $@
+$(NAME): $(LIB)
+	$(GCC) $(SRC) $< -o $@
 
-$(ARCHIVE_LIB):
+$(LIB):
 	make -C libft
 
 clean:

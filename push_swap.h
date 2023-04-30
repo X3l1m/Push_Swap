@@ -30,6 +30,8 @@ void	fill_index(stack *a, int size);
 stack	*next_min(stack *list, int last_max);
 int		check_same(stack *a);
 void	error_msg(int i);
+void	radix_sort(stack **a, stack **b, int size);
+int		get_max_bits(stack *list);
 
 
 

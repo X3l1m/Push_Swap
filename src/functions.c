@@ -56,7 +56,7 @@ stack	*last(stack *list)
 	return (list);
 }
 
-void	push_other(stack **this, stack **other)
+/* void	push_other(stack **this, stack **other)
 {
 	stack	*new_first;
 
@@ -64,6 +64,17 @@ void	push_other(stack **this, stack **other)
 	add_first(&*other, (*this)->num);
 	free(*this);
 	*this = new_first;
+} */
+
+
+void	push_other(stack **this, stack **other)
+{
+	stack	*new_first;
+
+	new_first = *this;
+	*this = (*this)->next;
+	new_first->next = *other;
+	*other = new_first;
 }
 
 int	check_same(stack *a)

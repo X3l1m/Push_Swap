@@ -9,13 +9,12 @@ void push_swap(stack **a, stack **b)
 		sa(a);
 	else if (size == 3)
 		sort_three(a);
-	else if (size <= 5)
+	else if (size <= 9)
 		sort_five(a, b, size);
-	else if (size > 5)
-	{
-		fill_index(*a, size);
+	else if (size <= 100)
 		sort_all(a, b, size);
-	}
+	else if (size > 100)
+		radix_sort(a, b, size);
 }
 void	error_msg(int i)
 {
@@ -46,6 +45,8 @@ int	main(int argc, char **argv)
 	check_same(a);
  	if (!is_sorted(a))
 		push_swap(&a, &b);
+	//sort_five(&a, &b, stack_size(a));
+	//pb(&a, &b);
 /* 	while (a || b)
 	{
 		if (a){
