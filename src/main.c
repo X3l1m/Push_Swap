@@ -6,7 +6,7 @@
 /*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/30 03:24:52 by seyildir      #+#    #+#                 */
-/*   Updated: 2023/04/30 05:23:58 by seyildir      ########   odam.nl         */
+/*   Updated: 2023/04/30 05:34:20 by seyildir      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	push_swap(t_stack **a, t_stack **b)
 
 void	error_msg(int i)
 {
-	perror("Error");
+	write(STDERR_FILENO, "Error\n", 6);
 	exit(i);
 }
 
