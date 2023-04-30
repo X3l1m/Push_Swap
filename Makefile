@@ -10,45 +10,31 @@
 #                                                                              #
 # **************************************************************************** #
 
-GREEN=\033[32m
-RED=\033[31m
-NC=\033[0m
+NAME = push_swap
 
-NAME	= push_swap
-LIB		= libft/libft.a
-LIBS	 = -L ./libft -lft
+SRCS = $(wildcard src/*.c utils/*.c)
+OBJS = ${SRCS:.c=.o}
 
-SRC_DIR = ./src
-OBJ_DIR = ./obj
-GCC		= gcc -Wall -Werror -Wextra
-RM		= rm -f
+CC = gcc -Wall -Wextra -Werror
 
-SRC 	= $(wildcard $(SRC_DIR)/*.c)
-OBJ		= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
+RM = rm -rf
 
-all: $(LIB) $(NAME)
+all: ${NAME}
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
-	@$(GCC) -c $< -o $@
-	@echo "$(GREEN)Compiling $(RED)$(basename $(notdir $<))$(NC)"
+${NAME}: ${OBJS}
+	@${MAKE} -C ./libft
+	@${CC} ${OBJS} ./libft/libft.a -o ${NAME}
 
-$(NAME): $(OBJ)
-	$(GCC) $(LIBS) $^ -o $@
-	@echo "Creating $(NAME)"
-$(LIB):
-	make -C libft
-
-clean:
-	make -C libft clean
-	rm -rf $(OBJ_DIR)
+clean: 
+	@${MAKE} -C ./libft fclean
+	@${RM} ${OBJS}
 
 fclean: clean
-	make -C libft fclean && $(RM) $(NAME)
+	@${RM} ${NAME}
 
 re: fclean all
 
-.PHONY:	all clean fclean re
+.PHONY: all clean fclean re
 
 # Siyah: \033[0;30m veya \033[30m
 # Kırmızı: \033[0;31m veya \033[31m
