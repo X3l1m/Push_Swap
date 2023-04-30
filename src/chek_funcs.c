@@ -6,7 +6,7 @@
 /*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/30 03:50:50 by seyildir      #+#    #+#                 */
-/*   Updated: 2023/04/30 05:00:26 by seyildir      ########   odam.nl         */
+/*   Updated: 2023/04/30 09:18:26 by seyildir      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,11 @@ void	free_stack(t_stack **list)
 }
 
 /* void	check_result(t_stack *a, t_stack *b)
-{
+{	
+	if (is_sorted(a))
+		printf("ok\n");
+	else
+		printf("ko\n");
 	while (a || b)
 	{
 		if (a)
@@ -77,9 +81,5 @@ void	free_stack(t_stack **list)
 		}
 		printf("\n");
 	}
-	if (is_sorted(a))
-		write(1, "OK", 2);
-	else
-		write(1, "KO", 2);
 }
  */

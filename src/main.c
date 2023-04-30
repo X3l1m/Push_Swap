@@ -6,7 +6,7 @@
 /*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/30 03:24:52 by seyildir      #+#    #+#                 */
-/*   Updated: 2023/04/30 05:34:20 by seyildir      ########   odam.nl         */
+/*   Updated: 2023/04/30 09:22:46 by seyildir      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,19 @@ int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
-	long	num;
-	int		i;
 
 	a = NULL;
 	b = NULL;
-	if (argc < 3)
-		return (0);
-	i = 1;
-	while (argv[i])
+	if (argc == 2)
 	{
-		if (!ft_istrdigit(argv[i]))
-			error_msg(1);
-		num = ft_atoi(argv[i++]);
-		if (num > INT_MAX || num < INT_MIN)
-			error_msg(1);
-		add_last(&a, (int)num);
+		one_argv_fill(argv[1], &a);
+		if (!a->next)
+			return (0);
 	}
+	else if (argc >= 3)
+		input_fill(argv, &a);
+	else
+		return (0);
 	check_same(a);
 	if (!is_sorted(a))
 		push_swap(&a, &b);

@@ -6,7 +6,7 @@
 /*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/30 04:10:34 by seyildir      #+#    #+#                 */
-/*   Updated: 2023/04/30 05:00:59 by seyildir      ########   odam.nl         */
+/*   Updated: 2023/04/30 09:18:41 by seyildir      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ t_stack	*get_max(t_stack *list);
 t_stack	*get_min(t_stack *list);
 t_stack	*last(t_stack *list);
 void	push_other(t_stack **this, t_stack **other);
+void	one_argv_fill(char *str, t_stack **a);
+void	input_fill(char **argv, t_stack **a);
 //void	check_result(t_stack *a, t_stack *b);
 void	push_swap(t_stack **a, t_stack **b);
 void	add_last(t_stack **list, int num);

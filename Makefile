@@ -6,14 +6,14 @@
 #    By: seyildir <seyildir@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/04/30 04:52:46 by seyildir      #+#    #+#                  #
-#    Updated: 2023/04/30 06:30:13 by seyildir      ########   odam.nl          #
+#    Updated: 2023/04/30 09:13:31 by seyildir      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRCS = $(wildcard src/*.c utils/*.c)
-OBJS = ${SRCS:.c=.o}
+SRCS = $(wildcard src/*.c)
+OBJS = $(SRCS:.c=.o)
 
 CC = gcc -Wall -Wextra -Werror
 
@@ -23,7 +23,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(MAKE) -C ./libft
-	@$(CC) $(OBJS) ./libft/libft.a -o $(NAME)
+	$(CC) $(OBJS) ./libft/libft.a -o $(NAME)
 
 clean: 
 	@$(MAKE) -C ./libft fclean
