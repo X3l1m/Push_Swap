@@ -6,36 +6,31 @@
 #    By: seyildir <seyildir@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/04/30 04:52:46 by seyildir      #+#    #+#                  #
-#    Updated: 2023/04/30 06:22:39 by seyildir      ########   odam.nl          #
+#    Updated: 2023/04/30 06:30:13 by seyildir      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRCS =  $(wildcard src/*.c utils/*.c)
-CHECK_SRCS = $(wildcard utils/*.c)
-
+SRCS = $(wildcard src/*.c utils/*.c)
 OBJS = ${SRCS:.c=.o}
-CHECK_OBJS = ${CHECK_SRCS:.c=.o}
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iincludes
+CC = gcc -Wall -Wextra -Werror
 
 RM = rm -rf
 
 all: ${NAME}
+
 ${NAME}: ${OBJS}
 	@${MAKE} -C ./libft
-	@${CC} ${CFLAGS} ${OBJS} ./libft/libft.a -o ${NAME}
+	@${CC} ${OBJS} ./libft/libft.a -o ${NAME}
 
 clean: 
 	@${MAKE} -C ./libft fclean
 	@${RM} ${OBJS}
-	@${RM} ${CHECK_OBJS}
 
 fclean: clean
 	@${RM} ${NAME}
-	@${RM} ${CHECK}
 
 re: fclean all
 
