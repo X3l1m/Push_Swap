@@ -1,69 +1,82 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   push_swap.h                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/04/30 04:10:34 by seyildir      #+#    #+#                 */
+/*   Updated: 2023/04/30 05:00:59 by seyildir      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define  PUSH_SWAP_H
 
-#include "libft/libft.h"
+# include "libft/libft.h"
 # include <limits.h>
 
-typedef struct	s_list
+typedef struct s_list
 {
-int				num;
-int				index;
-struct s_list	*next;
-}				stack;
+	int				num;
+	int				index;
+	struct s_list	*next;
+}	t_stack;
 
-stack	*newnode(int num, stack *link);
-void	add_last(stack **list, int num);
-void	add_first(stack **list, int num);
-void	swap_top_two(stack **list);
-void	go_top(stack **list);
-void	go_bot(stack **list);
-stack	*before_last(stack *list);
-stack	*last(stack *list);
-void	push_other(stack **this, stack **other);
-void	free_stack(stack **list);
-stack	*get_max(stack *list);
-stack	*get_min(stack *list);
-int		is_sorted(stack *list);
-void	sort_three(stack **list);
-void	push_swap(stack **a, stack **b);
-void	fill_index(stack *a, int size);
-stack	*next_min(stack *list, int last_max);
-int		check_same(stack *a);
+//Functions
+
+t_stack	*next_max(t_stack *list, int last_max);
+t_stack	*newnode(int num, t_stack *link);
+t_stack	*before_last(t_stack *list);
+t_stack	*get_max(t_stack *list);
+t_stack	*get_min(t_stack *list);
+t_stack	*last(t_stack *list);
+void	push_other(t_stack **this, t_stack **other);
+//void	check_result(t_stack *a, t_stack *b);
+void	push_swap(t_stack **a, t_stack **b);
+void	add_last(t_stack **list, int num);
+void	fill_index(t_stack *a, int size);
+void	swap_top_two(t_stack **list);
+void	free_stack(t_stack **list);
+void	go_top(t_stack **list);
+void	go_bot(t_stack **list);
 void	error_msg(int i);
-void	radix_sort(stack **a, stack **b, int size);
-int		get_max_bits(stack *list);
+int		get_pos(t_stack *list, int num);
+int		stack_size(t_stack *list);
+int		is_sorted(t_stack *list);
+int		check_same(t_stack *a);
 
+//Algorithms
 
+void	radix_sort(t_stack **a, t_stack **b, int size);
+void	sort_all(t_stack **a, t_stack **b, int size);
+void	sort_five(t_stack **a, t_stack **b, int size);
+void	sort_b(t_stack **a, t_stack **b, int size);
+void	sort_three(t_stack **list);
 
-//try
-int		stack_size(stack *list);
-int		get_pos(stack *list, int num);
-void	sort_all(stack **a, stack **b, int size);
-void 	sort_five(stack **a, stack **b, int size);
-void	sort_b(stack **a, stack **b, int size);
+//Actions
 
-//Actions:
 //Swap top two number in Stack A.
-void	sa(stack **a);
+void	sa(t_stack **a);
 //Swap top two number in Stack B.
-void	sb(stack **b);
+void	sb(t_stack **b);
 //Run sa and sb at the same time.
-void	ss(stack **a, stack **b);
+void	ss(t_stack **a, t_stack **b);
 //Top number goes to bottom of Stack A.
-void	ra(stack **a);
+void	ra(t_stack **a);
 //Top number goes to bottom of Stack B.
-void	rb(stack **b);
+void	rb(t_stack **b);
 //Run ra and rb at the same time.
-void	rr(stack **a, stack **b);
+void	rr(t_stack **a, t_stack **b);
 //Bottom number goes to top of Stack A.
-void	rra(stack **a);
+void	rra(t_stack **a);
 //Bottom number goes to top of Stack B.
-void	rrb(stack **b);
+void	rrb(t_stack **b);
 //Run rra and rrb at the same time.
-void	rrr(stack **a, stack **b);
+void	rrr(t_stack **a, t_stack **b);
 //Push top of B to top of A.
-void	pa(stack **a, stack **b);
+void	pa(t_stack **a, t_stack **b);
 //Push top of A to top of B.
-void	pb(stack **a, stack **b);
+void	pb(t_stack **a, t_stack **b);
 
 #endif
